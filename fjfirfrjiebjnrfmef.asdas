@@ -4854,7 +4854,7 @@ end
                 cfg.set_mode("toggle") 
                 cfg.set_visible(false)
                 cfg.open = false 
-            end) 
+            end)
 
             always.MouseButton1Click:Connect(function()
                 if selected then 
@@ -4878,17 +4878,20 @@ end
                 task.wait()
                 keybind.Text = "..."	
 
-                cfg.binding = library:connection(uis.InputBegan, function(keycode, game_event)  
-                    cfg.set(keycode.KeyCode)
+                cfg.binding = library:connection(uis.InputBegan, function(keycode, game_event)
+                    local selected_key = keycode.UserInputType == Enum.UserInputType.Keyboard and keycode.KeyCode or keycode.UserInputType
+                    cfg.set(selected_key)
                     
                     cfg.binding:Disconnect() 
                     cfg.binding = nil
                 end)
             end)
 
-            library:connection(uis.InputBegan, function(input, game_event) 
+            library:connection(uis.InputBegan, function(input, game_event)
                 if not game_event then 
-                    if input.KeyCode == cfg.key then 
+                    local selected_key = input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode or input.UserInputType
+
+                    if selected_key == cfg.key then 
                         if cfg.mode == "toggle" then 
                             toggled = not toggled
                             cfg.set(toggled)
@@ -4904,8 +4907,7 @@ end
                     return 
                 end 
 
-                --local selected_key = input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode or input.UserInputType
-    
+                local selected_key = input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode or input.UserInputType
                 if selected_key == cfg.key then
                     if cfg.mode == "hold" then 
                         cfg.set(false)
