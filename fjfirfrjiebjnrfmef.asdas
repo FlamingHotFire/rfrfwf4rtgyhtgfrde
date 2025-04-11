@@ -4500,14 +4500,14 @@ end
 
             task.spawn(function()
                 while true do 
-                    if selected ~= "normal" then 
+                    if selected ~= normal then 
                         cfg.set(
                             hsv(
-                                selected == "rainbow" and library.sin or h, 
-                                selected == "rainbow" and 1 or s, 
-                                selected == "fade" and library.sin or v
+                                selected == rainbow and library.sin or h, 
+                                selected == rainbow and 1 or s, 
+                                selected == fade and library.sin or v
                             )
-                            , selected == "fade_alpha" and library.sin
+                            , selected == fade_alpha and library.sin
                         )
                     end 
                     task.wait() 
@@ -4904,7 +4904,7 @@ end
                     return 
                 end 
 
-                local selected_key = input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode or input.UserInputType
+                --local selected_key = input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode or input.UserInputType
     
                 if selected_key == cfg.key then
                     if cfg.mode == "hold" then 
