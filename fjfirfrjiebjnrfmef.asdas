@@ -3070,7 +3070,11 @@ end
                 BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             })
 
-            for name, button in next, bodyparts do 
+            for name, button in next, bodyparts do
+                name =  `{name}` == "RightLeg" and "Right Leg" or 
+                        `{name}` == "LeftLeg" and "Left Leg" or 
+                        `{name}` == "LeftArm" and "Left Arm" or 
+                        `{name}` == "RightArm" and "Right Arm" 
                 bools[name] = false 
 
                 library:apply_theme(button, "accent", "BackgroundColor3") 
