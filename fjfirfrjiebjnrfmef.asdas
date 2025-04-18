@@ -728,6 +728,7 @@ end
                 task.spawn(function()
                     while true do 
                         if flags["color_picker_anim_speed"] then 
+                            if not library then task.wait() continue end
                             library.sin = math.abs(math.sin(tick() * flags["color_picker_anim_speed"]))
 
                             TEXT_ANIMATION_GRADIENT.Color = ColorSequence.new{
@@ -1766,6 +1767,30 @@ end
                     Size = UDim2.new(1, -200, 1, 0),
                     BorderSizePixel = 0,
                     BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                })
+
+                local button_inline = library:create("Frame", {
+                    Parent = Frame,
+                    Name = "",
+                    Position = UDim2.new(0, -15, 0, 2),
+                    BorderColor3 = Color3.fromRGB(19, 19, 19),
+                    Size = UDim2.new(1, -26, 0, 16),
+                    BorderSizePixel = 0,
+                    BackgroundColor3 = Color3.fromRGB(8, 8, 8)
+                })
+                
+                local button = library:create("TextButton", {
+                    Parent = button_inline,
+                    Name = "",
+                    FontFace = library.font,
+                    TextColor3 = Color3.fromRGB(170, 170, 170),
+                    BorderColor3 = Color3.fromRGB(56, 56, 56),
+                    Text = "Spectate",
+                    TextStrokeTransparency = 0.5,
+                    Position = UDim2.new(0, 2, 0, 2),
+                    Size = UDim2.new(1, -4, 1, -4),
+                    TextSize = 12,
+                    BackgroundColor3 = Color3.fromRGB(38, 38, 38)
                 })
 
                 local button_inline = library:create("Frame", {
