@@ -2257,7 +2257,7 @@ end
         function library:loader(properties) 
             local cfg = {
                 name = properties.Name or properties.name or properties.Title or properties.title or "map was here",
-                status = properties.Status or properties.status or properties.Text or properties.text or "map was here"
+                status = properties.Status or properties.status or properties.Text or properties.text or "map was here",
                 size = dim2(0, 300, 0, 300)
             }
 
