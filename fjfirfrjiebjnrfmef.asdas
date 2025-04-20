@@ -424,11 +424,11 @@ end
     -- library functions 
         function library:window(properties) 
             local cfg = {
-                name = properties.Name or properties.name or properties.Title or properties.title or "ledger.live", 
+                name = properties.Name or properties.name or properties.Title or properties.title or "map was here", 
                 size = properties.Size or properties.size or dim2(0, 500, 0, 650)
             }
             
-            local animated_text = library:animation( cfg.name .. " | developer | uid 1") 
+            local animated_text = library:animation( cfg.name .. " | map was here | mooha") 
 
             -- watermark 
                 local __holder = library:create("Frame", {
@@ -2251,6 +2251,167 @@ end
             end 
 
             return setmetatable(cfg, library)
+        end
+
+    -- LOADER
+        function library:loader(properties) 
+            local cfg = {
+                name = properties.Name or properties.name or properties.Title or properties.title or "map was here",
+                status = properties.Status or properties.status or properties.Text or properties.text or "map was here"
+                size = dim2(0, 300, 0, 300)
+            }
+
+            -- window
+                local inline1 = library:create("Frame", {
+                    Parent = library.gui,
+                    Name = "",
+                    Active = true, 
+                    Draggable = true,
+                    Position = UDim2.new(0.5, -cfg.size.X.Offset/2, 0.5, -cfg.size.Y.Offset/2),
+                    BorderColor3 = Color3.fromRGB(8, 8, 8),
+                    ZIndex = 2,
+                    Size = cfg.size,
+                    BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+                })
+                
+                local inline2 = library:create("Frame", {
+                    Parent = inline1,
+                    Name = "",
+                    Position = UDim2.new(0, 2, 0, 2),
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    Size = UDim2.new(1, -4, 1, -4),
+                    BorderSizePixel = 0,
+                    BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+                })
+                
+                local main = library:create("Frame", {
+                    Parent = inline2,
+                    Name = "",
+                    Position = UDim2.new(0, 2, 0, 2),
+                    BorderColor3 = Color3.fromRGB(57, 57, 57),
+                    Size = UDim2.new(1, -4, 1, -4),
+                    BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+                })
+                
+                local accent_line = library:create("Frame", {
+                    Parent = inline1,
+                    Name = "",
+                    BorderColor3 = Color3.fromRGB(34, 34, 34),
+                    Size = UDim2.new(1, 0, 0, 2),
+                    BorderSizePixel = 0,
+                    BackgroundColor3 = themes.preset.accent
+                })
+
+                library:apply_theme(accent_line, "accent", "BackgroundColor3") 
+                
+                local name = library:create("TextLabel", {
+                    Parent = inline1,
+                    Name = "",
+                    FontFace = library.font,
+                    TextColor3 = Color3.fromRGB(170, 170, 170),
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    Text = cfg.name,
+                    TextStrokeTransparency = 0.5,
+                    BorderSizePixel = 0,
+                    BackgroundTransparency = 1,
+                    Position = UDim2.new(0, 0, 0, -1),
+                    Size = UDim2.new(1, 0, 0, 1),
+                    ZIndex = 2,
+                    TextSize = 12,
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                })
+
+                library:create("ImageLabel", {
+                    Parent = inline1,
+                    Name = "",
+                    ImageColor3 = Color3.fromRGB(255, 255, 255),
+                    ScaleType = Enum.ScaleType.Fit,
+                    ImageTransparency = 0,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                    Image = "http://www.roblox.com/asset/?id=102438136786071",
+                    BackgroundTransparency = 1,
+                    Position = UDim2.new(0, cfg.size.X.Offset/4.6, 0, cfg.size.Y.Offset/10), -- cfg.size.Y.Offset/2.22 -- Middle
+                    Size = UDim2.new(0, 170, 0, 170),
+                    ZIndex = 2,
+                    BorderSizePixel = 0,
+                })
+
+                local status_text = library:create("TextLabel", {
+                    Parent = inline1,
+                    Name = "",
+                    FontFace = library.font,
+                    TextColor3 = Color3.fromRGB(170, 170, 170),
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    Text = cfg.status,
+                    TextStrokeTransparency = 0.5,
+                    BorderSizePixel = 0,
+                    BackgroundTransparency = 1,
+                    Position = UDim2.new(0, 0, 0, cfg.size.Y.Offset/1.35),
+                    Size = UDim2.new(1, 0, 0, 1),
+                    ZIndex = 2,
+                    TextSize = 18,
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                })
+                
+                local glow = library:create("ImageLabel", {
+                    Parent = inline1,
+                    Name = "",
+                    ImageColor3 = themes.preset.accent,
+                    ScaleType = Enum.ScaleType.Slice,
+                    ImageTransparency = 0.8999999761581421,
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                    Image = "http://www.roblox.com/asset/?id=18245826428",
+                    BackgroundTransparency = 1,
+                    Position = UDim2.new(0, -20, 0, -20),
+                    Size = UDim2.new(1, 40, 0, 42),
+                    ZIndex = 2,
+                    BorderSizePixel = 0,
+                    SliceCenter = Rect.new(Vector2.new(21, 21), Vector2.new(79, 79))
+                })
+                library:apply_theme(glow, "accent", "ImageColor3") 
+                
+                local depth = library:create("Frame", {
+                    Parent = inline1,
+                    Name = "",
+                    BackgroundTransparency = 0.5,
+                    Position = UDim2.new(0, 0, 0, 1),
+                    BorderColor3 = Color3.fromRGB(0, 0, 0),
+                    Size = UDim2.new(1, 0, 0, 1),
+                    BorderSizePixel = 0,
+                    BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+                })
+                
+                local holder = library:create("Frame", {
+                    Parent = inline1,
+                    Name = "",
+                    BackgroundTransparency = 1,
+                    Position = UDim2.new(1, 20, 0, 0),
+                    BorderColor3 = Color3.fromRGB(19, 19, 19),
+                    ZIndex = 2,
+                    AutomaticSize = Enum.AutomaticSize.XY,
+                    BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+                })      
+
+                task.spawn(function()
+                    while true do 
+                        if flags["color_picker_anim_speed"] then 
+                            if not library then task.wait() continue end
+                            library.sin = math.abs(math.sin(tick() * flags["color_picker_anim_speed"]))
+
+                            TEXT_ANIMATION_GRADIENT.Color = ColorSequence.new{
+                                ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+                                ColorSequenceKeypoint.new(math.abs(math.sin(tick())), themes.preset.accent),
+                                ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+                            }
+                        end 
+                        task.wait()
+                    end 
+                end)
+            --
+
+            return inline1, status_text
         end 
 
         function library:new_keybind(properties)
@@ -2299,7 +2460,7 @@ end
         function library:notification(properties)
             local cfg = {
                 time = properties.time or 5,
-                text = properties.text or properties.name or "ledger.live is pasted"
+                text = properties.text or properties.name or "map was here"
             }
 
             -- 28 offset
