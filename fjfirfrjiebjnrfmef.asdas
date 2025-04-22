@@ -177,24 +177,29 @@ end
     if not isfile(library.directory .. "/fonts/main.ttf") then 
         writefile(library.directory .. "/fonts/main.ttf", game:HttpGet("https://github.com/f1nobe7650/other/raw/main/uis/font.ttf"))
     end 
-    
-    local tahoma = {
-        name = "SmallestPixel7",
-        faces = {
-            {
-                name = "Regular",
-                weight = 400,
-                style = "normal",
-                assetId = getcustomasset and getcustomasset(library.directory .. "/fonts/main.ttf") or nil
+
+    local s = pcall(function()
+        return getcustomasset(library.directory .. "/fonts/main.ttf")
+    end)
+    if s then
+        local tahoma = {
+            name = "SmallestPixel7",
+            faces = {
+                {
+                    name = "Regular",
+                    weight = 400,
+                    style = "normal",
+                    assetId = getcustomasset(library.directory .. "/fonts/main.ttf")
+                }
             }
         }
-    }
     
-    if not isfile(library.directory .. "/fonts/main_encoded.ttf") then 
-        writefile(library.directory .. "/fonts/main_encoded.ttf", http_service:JSONEncode(tahoma))
-    end 
-    
-    library.font = getcustomasset and Font.new(getcustomasset(library.directory .. "/fonts/main_encoded.ttf"), Enum.FontWeight.Regular) or nil
+        if not isfile(library.directory .. "/fonts/main_encoded.ttf") then 
+            writefile(library.directory .. "/fonts/main_encoded.ttf", http_service:JSONEncode(tahoma))
+        end 
+        
+        library.font = Font.new(getcustomasset(library.directory .. "/fonts/main_encoded.ttf"), Enum.FontWeight.Regular)
+    end
 -- 
 
 -- functions 
