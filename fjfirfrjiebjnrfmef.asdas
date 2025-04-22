@@ -1,6 +1,6 @@
-getcustomasset = getcustomasset or function(...)
+--[[getcustomasset = getcustomasset or function(...)
 	return "rbxassetid://0"
-end
+end--]]
 
 local uis = game:GetService("UserInputService") 
 local players = game:GetService("Players") 
@@ -185,7 +185,7 @@ end
                 name = "Regular",
                 weight = 400,
                 style = "normal",
-                assetId = getcustomasset(library.directory .. "/fonts/main.ttf")
+                assetId = getcustomasset and getcustomasset(library.directory .. "/fonts/main.ttf") or nil
             }
         }
     }
@@ -194,7 +194,7 @@ end
         writefile(library.directory .. "/fonts/main_encoded.ttf", http_service:JSONEncode(tahoma))
     end 
     
-    library.font = Font.new(getcustomasset(library.directory .. "/fonts/main_encoded.ttf"), Enum.FontWeight.Regular)
+    library.font = getcustomasset and Font.new(getcustomasset(library.directory .. "/fonts/main_encoded.ttf"), Enum.FontWeight.Regular) or nil
 -- 
 
 -- functions 
