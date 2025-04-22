@@ -180,28 +180,24 @@ end
         writefile(library.directory .. "/fonts/main.ttf", "{}")
     end
 
-    local s = pcall(function()
-        return getcustomasset(library.directory .. "/fonts/main.ttf")
-    end)
-    if s then
-        local tahoma = {
-            name = "SmallestPixel7",
-            faces = {
-                {
-                    name = "Regular",
-                    weight = 400,
-                    style = "normal",
-                    assetId = getcustomasset(library.directory .. "/fonts/main.ttf")
-                }
+    local tahoma = {
+        name = "SmallestPixel7",
+        faces = {
+            {
+                name = "Regular",
+                weight = 400,
+                style = "normal",
+                assetId = getcustomasset(library.directory .. "/fonts/main.ttf")
             }
         }
+    }
+
+    if not isfile(library.directory .. "/fonts/main_encoded.ttf") then 
+        writefile(library.directory .. "/fonts/main_encoded.ttf", http_service:JSONEncode(tahoma))
+    end 
     
-        if not isfile(library.directory .. "/fonts/main_encoded.ttf") then 
-            writefile(library.directory .. "/fonts/main_encoded.ttf", http_service:JSONEncode(tahoma))
-        end 
-        
-        library.font = Font.new(getcustomasset(library.directory .. "/fonts/main_encoded.ttf"), Enum.FontWeight.Regular)
-    end
+    library.font = Font.new(getcustomasset(library.directory .. "/fonts/main_encoded.ttf"), Enum.FontWeight.Regular)
+
 -- 
 
 -- functions 
