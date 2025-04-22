@@ -199,8 +199,8 @@ end
     end 
     
     --library.font = Font.new(getcustomasset(library.directory .. "/fonts/main_encoded.ttf"), Enum.FontWeight.Regular)
-    --library.font = Font.new("rbxasset://fonts/families/Nunito.json", Enum.FontWeight.Regular)
-    library.font = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Light)
+    library.font = Font.new("rbxasset://fonts/families/Nunito.json", Enum.FontWeight.Regular)
+    --library.font = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Light)
     
 -- 
 
