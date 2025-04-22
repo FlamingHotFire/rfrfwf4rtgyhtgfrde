@@ -1,3 +1,7 @@
+getcustomasset = getcustomasset or function(...)
+	return "rbxassetid://0"
+end
+
 local uis = game:GetService("UserInputService") 
 local players = game:GetService("Players") 
 local ws = game:GetService("Workspace")
@@ -35,7 +39,7 @@ local floor = math.floor
 local min = math.min 
 local abs = math.abs 
 
-if getgenv().library then 
+if getgenv().library and getgenv().library.unload then
     getgenv().library:unload()
 end 
 
